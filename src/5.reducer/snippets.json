@@ -1,0 +1,25 @@
+{
+    "Create reducer test boilerplate": {
+        "prefix": "rtest",
+        "body": [
+          "import $2 from '$1';",
+          "import { fromJS } from 'immutable';",
+          "",
+          "describe('$2', () => {",
+          "  const createInitialState = (opts = {}) => {",
+          "    const {",
+          "      $0",
+          "    } = opts;",
+          "",
+          "    return fromJS({",
+          "    });",
+          "  }",
+          "",
+          "  it('should', () => {",
+          "    ",
+          "  });",
+          "});"
+        ],
+        "description": "Create reducer test boilerplate"
+      }
+}

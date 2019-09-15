@@ -1,0 +1,28 @@
+{
+  "Create common test boilerplate": {
+    "prefix": "ctest",
+    "body": [
+      "import $2 from '$1';",
+      "",
+      "describe(`$2`, () => {",
+      "  it(`should $3`, () => {",
+      "    $0",
+      "  })",
+      "});"
+    ],
+    "description": "Create common test boilerplate"
+  },
+  "Create common test boilerplate for destructured import": {
+    "prefix": "cdtest",
+    "body": [
+      "import { $2 } from '$1';",
+      "",
+      "describe(`$2`, () => {",
+      "  it(`should $3`, () => {",
+      "    $0",
+      "  })",
+      "});"
+    ],
+    "description": "Create common test boilerplate"
+  }
+}

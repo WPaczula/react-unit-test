@@ -1,0 +1,32 @@
+{
+    "Create saga test boilerplate": {
+        "prefix": "stest",
+        "body": [
+          "import { expectSaga } from 'redux-saga-test-plan';",
+          "import { $2 } from '$1';",
+          "",
+          "describe('$2', () => {",
+          "  it('should $0', () => {",
+          "    return expectSaga($2)",
+          "      .run()",
+          "  });",
+          "});"
+        ],
+        "description": "Create saga test boilerplate"
+      },
+      "Mock some part of a module": {
+        "prefix": "pmock",
+        "body": [
+          "const mockSelector = jest.fn();",
+          "jest.mock('$1', () => {",
+          "    const module = require.requireActual('$1');",
+          "",
+          "    return ({",
+          "        ...module,",
+          "        $0: () => mockSelector,",
+          "    });",
+          "});"
+        ],
+        "description": "Mock some part of a module"
+      }
+}
