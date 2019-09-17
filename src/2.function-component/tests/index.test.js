@@ -4,6 +4,19 @@ import Button from '..';
 import WarningIcon from '../warning-icon';
 
 describe(`<Button />`, () => {
+  it(`should render text given in children v1`, () => {
+    const text = 'Test';
+    const props = {
+      onClick: jest.fn(),
+      inverse: true,
+      displayWarningIcon: false,
+    }
+
+    const button = shallow(<Button {...props}>{text}</Button>)
+
+    expect(button.text()).toBe(text);
+  });
+
   const renderButton = (props = {}) => {
     const {
       onClick = jest.fn(),
@@ -30,14 +43,10 @@ describe(`<Button />`, () => {
     
   });
 
-  it(`should render text given in children.`, () => {
+  it(`should render text given in children v2`, () => {
     const text = 'Test';
-    const aLotOfProps = {
-      onClick: jest.fn(),
-      inverse: true,
-      displayWarningIcon: false,
-    }
-    const button = shallow(<Button {...aLotOfProps}>{text}</Button>)
+
+    const button = renderButton({ text });
 
     expect(button.text()).toBe(text);
   });
