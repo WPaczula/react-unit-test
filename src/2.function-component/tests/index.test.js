@@ -44,11 +44,11 @@ describe(`<Button />`, () => {
   });
 
   it(`should render text given in children v2`, () => {
-    const text = 'Test';
+    const children = 'Test';
 
-    const button = renderButton({ text });
+    const button = renderButton({ children });
 
-    expect(button.text()).toBe(text);
+    expect(button.text()).toBe(children);
   });
 
   it('should add inverse class when inverse prop is given.', () => {
@@ -81,8 +81,6 @@ describe(`<Button />`, () => {
     const displayWarningIcon = true;
     const button = renderButton({ displayWarningIcon });
 
-    console.log(button.debug());
-    
     const warningIcon = button.find(WarningIcon);
 
     expect(warningIcon.exists()).toBe(true);
