@@ -1,27 +1,27 @@
-# Enzyme, czyli jak testować komponent w izolacji?
+# Enzyme - how to test components in isolation?
 
-Do testowania komponentów można użyć biblioteki open source od airbnb o nazwie `enzyme`. Pozwala ona na wyrenderowanie komponentów React'owych i udostępnia funkcje pomocne do odnalezienia ich dzieci lub sprawdzenia ich stanu. Udostępnia trzy metody do renderowania komponentów.
-- `shallow` - płytki render komponentu,
-- `mount` - pełny render komponentu,
-- `render` - render do statycznego htmla,
+To test a React component you can use an [open source library by airbnb](https://airbnb.io/enzyme/) called `Enzyme`. It allows you to render React components and provides functions useful to find children or checking its state. It provides three rendering methods:
+- `shallow` - shallow render of a component,
+- `mount` - full render of a components,
+- `render` - static html render,
 
-Aby sprawdzić rezultat rendera można użyć funkcji `debug()`, która zwraca stringa, który określa otrzymane drzewo komponentów React'a.
+To check the result of the render you can use `debug()` function, which will return a string with the html tree.
 
 ## render
 
-Renderuje pełne drzewo jako statyczny html. Pozwala tylko na jego przeszukiwanie. Nie pozwala na sprawdzanie state'a ani propsów komponentów. Może być przydatny podczas testowania buildowania aplikacji czy server side renderingu.
+Renders a full static html tree. It allows its search, but doesn't allow checking components state or props. You can use it to test building of an ap or SSR.
 
 ## mount
 
-Renderuje pełne drzewo aż do ostatniego dziecka. Może być użyte na przykład w testach integracyjnych. Pozwala na użycie tych samych metod co `shallow`.
+Renders a full tree up to the last child. You can use it for integration testing. It allows using the same methods as `shallow`.
 
 ## shallow
 
-Najczęściej używana funkcja do renderowania komponentów. Renderuje tylko jeden poziom komponentów! Posiada sporo metod, które pozwalają na wyszukiwanie dzieci, poruszanie się po płytkim drzewie lub symulowanie eventów:
+Function for unit testing. It renders only one level of components! Consists of lots of methods, which allows you to search for children, more in the shallow tree or simulating events:
 
-1. `find(css: string|props: object|react component)` - metoda wyszukiwania elementu. Można tutaj używać css-owych selektorów wrzucając string'a jako argument, reactowych komponentów wrzucając ich konstruktor lub określone propsy.
-2. `childAt(i: number)` - metoda pobierania i-tego dziecka komponentu. Czasem lepiej jej nie używać, bo gdy zmieni się kolejność np przez opakowanie div'em, to test się wysypuje.
-3. `hasClass(class: string)` - sprawdza, czy dany wrapper posiada daną klasę.
-4. `simulate(eventName: string, event: object)` - symuluje dany event o podanej nazwie.
-5. `exists()` - sprawdza, czy dany wrapper został wyrenderowany.
+1. `find(css: string|props: object|react component)` - search method. You can use css selectors, React components by passing its name or by describing props.
+2. `childAt(i: number)` - method to choose i child of a given component. It's risky to use it as a simple refactor can break the test.
+3. `hasClass(class: string)` - check if a html element has a given css class.
+4. `simulate(eventName: string, event: object)` - simulates an event.
+5. `exists()` - checks if an element was rendered.
  

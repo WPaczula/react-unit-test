@@ -1,12 +1,12 @@
-# Jak testować kontenery?
+# How to test containers?
 
-Aby przetestować logikę komponentu, który jest w coś opakowany należy się do niego najpierw dostać. Jeżeli używa się funkcji `mount` wystarczy znaleźć go przez `find`. 
+To test components logic, which is wrapped by some container, you should find it first. If you use `mount` just call a `find` function.
 
-Można to również zrobić za pomocą funkcji `shallow`! Należy jednak świadomie zagłębić się tyle razy, żeby przejść przez wszystkie opakowania szukanego komponentu. Służy do tego funkcja `dive`. Powoduje ona render typu shallow komponentu, na który wskazuje wrapper.
+You can do that using `shallow` as well. You have to use `dive()` through all the containers up to the component you are looking for. To see in which component you're in use mentioned `debug()` function.
 
-# Jak zamockować kontener, aby nie korzystać z zewnętrznych/złożonych funkcji?
+# How to mock a container to prevent using some heavy functions?
 
-Aby zamockować moduł należy użyć funkcji `jest.mock('sciezka/do/modulu', inline'owa funkcja zwracająca mock)`. Funkcja musi być obowiązkowo inline. W przypadku korzystania z jakichś zewnętrznych parametrów ich nazwa musi zaczynać się od słowa `mock`. W przypadku innej nazwy zostanie wyświetlony komunikat:
+To mock a module you can use `jest.mock('path/to/the/module', () => mock)`. Function passed as the second argument must be inline. In case of using some outer parameters use `mock` word before the name of a variable. Otherwise you will see:
 
 ```
 The modue factory of jest.mock is not allowed to reference any out-of-scope variables.
@@ -14,8 +14,8 @@ The modue factory of jest.mock is not allowed to reference any out-of-scope vari
 NOTE: This is a precaution to guard against uninitialized mock variables. If it is ensured that the mock is required lazily, variable names prefixed with `mock` (case insensitive) are permitted.
 ```
 
-Należy zadbać o to, żeby mock był zainicjalizowany podczas wykonywania skryptu.
+Take care of your mock inicialisation when running a test.
 
-# O czym należy pamiętać podczas mockowania modułów?
+# What should I remember when mocking modules?
 
-Podczas tworzenia mocka, należy pamiętać o resetowaniu go przed każdym testem. Służy do tego funkcja `beforeEach(fn)`. W przypadku funkcji `jest.fn` można użyć `mockRestore`, aby zrestartować dany mock. Zostanie przy tym również zapomniana implementacja funkcji. Aby do tego nie dopuścić można użyć `mockReset`.
+When creating mocks, remember about reseting them before each test. To do so use `beforeEach(fn)`. When using a function as a mock you can use `mockRestore`, to reset mock and loose its implementation if it was specified. To remember the implementation use `mockReset`.
