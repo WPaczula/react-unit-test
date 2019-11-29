@@ -1,11 +1,11 @@
-# Przydatne extensiony
+# Useful vs code extensions
 
-Bardzo przydatnymi extensionami są:
-- `jest` - pokazuje wizualnie stan testów oraz dodaje intellisence do jest'a (https://marketplace.visualstudio.com/items?itemName=Orta.vscode-jest),
-- `jest-runner` - pozwala na odpalanie testów z menu pod prawym przyciskiem (https://marketplace.visualstudio.com/items?itemName=firsttris.vscode-jest-runner).
+Ones of the most useful extensions to work with jest are:
+- `jest` - it shows tests state and adds intellisence (https://marketplace.visualstudio.com/items?itemName=Orta.vscode-jest),
+- `jest-runner` - it allows running tests using menu opened by right clicking (https://marketplace.visualstudio.com/items?itemName=firsttris.vscode-jest-runner).
 
-# Snippety
+# Snippets
 
-Warto używać snippetów, bo często boilerplate mocno się powtarza. Niektóre foldery w tym S&T posiadają plik o nazwie snippet.json. Zawierają one boilerplate'y dla danego typu, które mogą się przydać. Żeby je wgrać wystarczy wejść w `File->Preferences->User Snippets` wybrać `javascript.json` i skopiować dane snippety do tego pliku. 
+It's worth to use snippets for tests boilerplate. Some folders in this repo contains a file called snippet.json. You can find a snippets for specific test case there. To use them go to `File->Preferences->User Snippets`, choose `javascript.json` and copy them to there.
 
-Żeby stworzyć własny snippet polecam tę stronę: https://snippet-generator.app/.
+To create your own snippet I recommend https://snippet-generator.app/.

@@ -1,12 +1,13 @@
 # Jak testować stan i zmianę propsów?
+# How to test components with a state or changing props?
 
-Wrapper enzyme'a posiada wiele metod do pobierania propsów/stanu oraz ich ustawiania. Najważniejsze z nich wraz z opisem podane poniżej:
+There are a lot of methods to test state/props. The most important ones are:
 
-- `state(-|name: string)` - zwraca cały stan lub tylko jego część o podanej nazwie,
-- `props(-|name: string)` - zwraca wszystkie propsy lub tylko jeden o podanej nazwie,
-- `setState(state: object)` - działa dokładnie tak samo jak setState w komponencie
-- `setProps(props: object)` - działa tak samo jak setState tylko dla propsów. Nie trzeba przekazywać wszystkich, zostaje wykonany merge obiektów.
+- `state(-|name: string)` - returns a whole state (read a paragraph below),
+- `props(-|name: string)` - returns all props or only one of a given name,
+- `setState(state: object)` - it works like `setState` in a class component (read a paragraph below),
+- `setProps(props: object)` - it merges given props with the ones already set.
 
-# Czy powinno się testować stan?
+# Should I test the state?
 
-Autorzy enzyme'a w opisie metody `setState` piszą, że lepiej użyć zewnętrznego API, które daje komponent, żeby doprowadzić go do konkretnego stanu, który powinien testowany. Ta metoda może być jednak użyteczna, jeżeli ciężko jest doprowadzić komponent do jakiegoś stanu. Można jej wtedy użyć jak czegoś w rodzaju skrótu.
+`Enzyme` authors write, that its best to use components API instead of setting a state directly. Try to simulate events/setting props to go to a specific state.

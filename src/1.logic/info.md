@@ -1,40 +1,43 @@
-# Jak stworzyć plik testu, żeby został odpalony?
+# How to create a test file, so it's run?
 
-Wystarczy stworzyć plik pod daną ścieżką: 
+Just create a file with a path like:
 
 ```
 */tests/*.test.js
 ```
 
-# Jak odpalać testy i jakie są przydatne przełączniki?
+# How to run tests and what are useful params?
 
-## Odpalanie testów
+## Running tests
 
-Aby odpalić test pojedynczo należy odpalić runnera jest'a. Zazwyczaj jest to po prostu klasyczne polecenie:
+To run tests once just run jest test runner. In most cases it's `test` command, so you can use one of below commands depending on the package manager of your preference:
 
 ```
 npm run test
+yarn test
 ```
 
-## Watch dla testów, dla przyspieszenia pracy
+## Test watch - how to speed up your work
 
-Jest tak samo jak webpack posiada przełącznik, który pozwala na tryb *watch*. Aby go odpalić należy użyć przełącznika `--watchAll`. Całość polecenia to:
+It's the same kind of a parameter that wepback has - it turns *watch* mode. To run it use `--watchAll`:
 
 ```
 npm run test -- --watchAll
+yarn test --watchAll
 ```
 
-## Odpalenie jednego pliku
+## Running a single file
 
-Żeby odpalić jeden plik testowy wystarczy podać regexa, który będzie określał ścieżkę do tego pliku. Na przykład dla odpalenia testów dla części *logic* można wywołać: 
+To run a single file just pass a regular expression, which describes the path to that file. You can find an example to tests containing *logic* part below:
 
 ```
 npm run test -- logic
+yarn test logic
 ```
 
-# Jaką budowę ma plik testowy?
+# What is the boilerplate of a test file?
 
-Większość plików składa się z opisu testowanego modułu w funkcji `describe`, opisu scenariuszy testowych w funkcji `it`, które kończą się asercją `expect`. Przykładowy boilerplate to:
+Most of the tests consist of a description of the module in `describe` function, description of a test case in `it` function, which ends with assertion done by `expect` function. You can find an example below:
 
 ```
 import superFunction from '..';
@@ -46,28 +49,28 @@ describe('superFunction', () => {
 });
 ```
 
-Do asercji można użyć takich funkcji jak:
-- `toBe` - równość co do wartości/referencji,
-- `toEqual` - równość co do znaczenia np. array, object,
-- `toHaveBeenCalled` - funkcja została odpalona,
-    - `toHaveBeenCalledTimes` - funkcja została odpalona x razy,
-    - `toHaveBeenCalledWith` - funkcja została odpalona z argumentem.
-- ... wiele innych jak `toBeNull`, `toBeDefined`.
+To assert you can use functions like:
+- `toBe` - value/reference equality,
+- `toEqual` - deep equality for example for arrays/objects,
+- `toHaveBeenCalled` - mock function was called,
+    - `toHaveBeenCalledTimes` - mock function was called x times,
+    - `toHaveBeenCalledWith` - mock function was called with some argument.
+- ...and more like `toBeNull`, `toBeDefined`.
 
-Aby zanegować można użyć `not` przed funckją np.
+To negate you can use `not` before the function like:
 ```
 expect(10).not.toEqual(5);
 ```
 
-# Mockowanie funkcji
+# Function mocking
 
-Tworzenie mocka do funkcji można otrzymać wywołując `jest.fn()`. Następnie można sprawdzać, czy została ona odpalona przez wspomniane funckje już `toHaveBeenCalled...`. Można dodatkowo określić zwracaną wartość przez mock:
+To create a function mock you can call `jest.fn()`. Then you can check, if it was called using mentioned `toHaveBeenCalled...` functions. You can specify a value returned by the mock using:
 
 ```
 const mockReturningFive = jest.fn().mockReturnValue(5);
 ```
 
-Albo określić implementację funkcji:
+Or specify it's implementation:
 
 ```
 const toBoolean = jest.fn().mockImplementation(value => !!value)

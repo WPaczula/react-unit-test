@@ -1,6 +1,7 @@
 # Jak testować sagi?
+# How to test sagas?
 
-Do testowania sag może posłużyć biblioteka `redux-saga-test-plan`. Pozwala ona na napisanie scenariusza sagi i sprawdza, czy został on spełniony. Budowa tagiego testu wygląda następująco:
+To test sagas you can use `redux-saga-test-plan` library. It allows writing saga scenarios and checks if they are true for a given action. A boilerplate for that test is given belos:
 
 ```
 import { expectSaga } from 'redux-saga-test-plan';
@@ -14,13 +15,13 @@ it('should do sth', () => {
 })
 ```
 
-Ważne jest, aby zwrócić `expectSaga` z testu. Jest to promise, który czeka na zresolve'owanie i w ten sposób jest jest w stanie na niego poczekać.
+It's important to return `expectSaga` from the test. It's a `Promise`, which will wait for the saga to run and that's how jest is able to wait for it to resolve. 
 
-# Co z mockami?
+# How to mock staff?
 
-Biblioteka pozwala na mockowanie skomplikowanych select'ów, czy asynchronicznych strzałów do backendu. Robi to dzięki funkcji `provide`. Ma dość ciekawą budowę:
+This library allows you to mock complex selectors or asyncrhonous API calls. To do it you can use `provide` function. It has an interesting shape:
 
-`provide(providers: array)`, gdzie provider to tablice o dwóch elementach - jakie wywołanie yielda ma być zamockowane oraz jaka wartość ma być zwrócona. Na przykład dla select'a o nazwie selectAllIds wyglądałoby to tak:
+`provide(providers: array)`, where provider is an array of tuples - first is the yield call that should be mocked, second is the returned value. For example mocking a selector called `selectAllIds` would look like that:
 
 ```
     return expectSaga(saga)
@@ -28,10 +29,9 @@ Biblioteka pozwala na mockowanie skomplikowanych select'ów, czy asynchronicznyc
             [select(selectAllIds), mockedValue],
         ]);
 ```
+## What to do with selector creators?
 
-## Co zrobić z fabrykami selektorów?
-
-Matchowanie po stronie biblioteki testującej szuka wywołania funkcji o danej referencji. W przypadku fabryk selektorów referencja będzie inna przy każdym wywołaniu i dlatego biblioteka nie odnajdzie wywołania aby je zmockować. Można sobie z tym poradzić mockując ten jeden selektor. Aby to zrobić można posłużyć się funkcją `requireActual`, która zwraca obiekt modułu. Poniżej znajduje się template takiego wywołania:
+Matching in that library works bsed on a reference. In case of selector creators reference will be different with every call, so the library won't be able to match it. You can use a trick though. Mock the selector creator (`requireAll` function will be really useful here as it returns a module in an object form). You can find an example below:
 
 ```
     const mockSelector = jest.fn();
@@ -45,6 +45,6 @@ Matchowanie po stronie biblioteki testującej szuka wywołania funkcji o danej r
     });
 ```
 
-# Co testować?
+# What should I test?
 
-W sagach warto sprawdzać scenariusze i zazwyczaj jest ich niewiele. Opisuje się co stanie się w przypadku udanego/nieudanego calla do api oraz w przypadku specyficznych warunków aplikacji.
+There is not so many scenarios in sagas. Just describe what should be done in case of successful/unsuccessful API call or specific application state.
