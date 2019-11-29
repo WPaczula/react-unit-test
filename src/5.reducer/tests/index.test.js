@@ -10,6 +10,7 @@ describe(`reducer`, () => {
 
         return fromJS({ logic });
     }
+
     it(`should have initial state.`, () => {
     const expectedState = fromJS({ logic: '🤡' });
 

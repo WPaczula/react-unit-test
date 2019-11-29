@@ -36,7 +36,7 @@ describe(`<Button />`, () => {
     );
   }
 
-  it.skip('debug', () => {
+  it('debug', () => {
     const wrapper = renderButton();
 
     console.log(wrapper.debug());
