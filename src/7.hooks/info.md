@@ -33,7 +33,7 @@ result.current.increment()
 
 currentCount = result.current.count
 ```
-
+ss
 ## Event testing
 
 To test events use `fireEvent` function. Remember to wrap it in `act` function so React will run all asynchronous effects.s
