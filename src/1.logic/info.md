@@ -17,23 +17,7 @@ npm run test
 yarn test
 ```
 
-## Test watch - how to speed up your work
-
-It's the same kind of a parameter that wepback has - it turns *watch* mode. To run it use `--watchAll`:
-
-```
-npm run test -- --watchAll
-yarn test --watchAll
-```
-
-## Running a single file
-
-To run a single file just pass a regular expression, which describes the path to that file. You can find an example to tests containing *logic* part below:
-
-```
-npm run test -- logic
-yarn test logic
-```
+In the CRA it will run the watch mode by default. When it's done you can target some specific file by writing "p" and setting up the test pattern.
 
 # What is the boilerplate of a test file?
 
@@ -50,29 +34,13 @@ describe('superFunction', () => {
 ```
 
 To assert you can use functions like:
+
 - `toBe` - value/reference equality,
 - `toEqual` - deep equality for example for arrays/objects,
-- `toHaveBeenCalled` - mock function was called,
-    - `toHaveBeenCalledTimes` - mock function was called x times,
-    - `toHaveBeenCalledWith` - mock function was called with some argument.
 - ...and more like `toBeNull`, `toBeDefined`.
 
 To negate you can use `not` before the function like:
+
 ```
 expect(10).not.toEqual(5);
 ```
-
-# Function mocking
-
-To create a function mock you can call `jest.fn()`. Then you can check, if it was called using mentioned `toHaveBeenCalled...` functions. You can specify a value returned by the mock using:
-
-```
-const mockReturningFive = jest.fn().mockReturnValue(5);
-```
-
-Or specify it's implementation:
-
-```
-const toBoolean = jest.fn().mockImplementation(value => !!value)
-```
-
