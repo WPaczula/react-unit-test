@@ -31,8 +31,8 @@ The library exports some main functions:
 - `screen` - it was provided lately and is an abstraction of what is displayed by the component. It has all the queries returned by the `render` function so can be used as an alternative.
 - `fireEvent` - gives the ability to fire events at the rendered part of the component. It can be a click, focus etc.
 - `act` - as some updates like effects became asynchronous there is a way to tell the virtual dom that the action will cause component update. If it is not used there can be a warning in the console, that some unexpected render happened. It also has a awaitable version if there is some promise to be resolved inside the component. Most of the calls in the testing library are wrapped in `act` so this shouldn't be necessary, but useful in some cases.
-- `wait` - it retries function until it stops throwing an error or times out - usefull on some async updates when an element will appear.
+- `waitFor` - it retries function until it stops throwing an error or times out - usefull on some async updates when an element will appear.
 
 ## The queries 🔍
 
-`render` function or `screen` object gives you set of queries that can be used to find and element on the rendered dom.
+`render` function or `screen` object gives you set of queries that can be used to find and element on the rendered dom. You can visit the cheatsheet - it's described there in the best way: https://testing-library.com/docs/react-testing-library/cheatsheet
