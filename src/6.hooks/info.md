@@ -25,7 +25,7 @@ const useCounter = () => {
     return { count, increment }
 }
 
-const { result } = renderHook(() => useLogic())
+const { result } = renderHook(() => useCounter())
 
 let currentCount = result.current.count
 
@@ -36,4 +36,4 @@ currentCount = result.current.count
 
 ## Event testing
 
-To test events use `fireEvent` function. Remember to wrap it in `act` function so React will run all asynchronous effects.s
+To test events use `fireEvent` function. Remember to wrap it in `act` function so React will run all asynchronous effects.

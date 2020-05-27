@@ -1,7 +1,6 @@
 import React from 'react';
 import NavigateButton, { Props } from '..';
-import { render, fireEvent } from '@testing-library/react';
-import { act } from 'react-dom/test-utils';
+import { render, fireEvent, act } from '@testing-library/react';
 const { MemoryRouter } = jest.requireActual('react-router');
 
 const mockHistoryPush = jest.fn();

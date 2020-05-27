@@ -57,7 +57,7 @@ describe(`useWindowSize`, () => {
     const numberOfResizeCallsForRemove = removeSpy.mock.calls.filter(
       (call) => call[0] === 'resize',
     ).length;
-    expect(numberOfResizeCallsForAdd).toEqual(1);
-    expect(numberOfResizeCallsForRemove).toEqual(1);
+    expect(numberOfResizeCallsForAdd).toBe(1);
+    expect(numberOfResizeCallsForRemove).toBe(1);
   });
 });

@@ -26,7 +26,7 @@ describe('makeRequest', () => {
     const requestError = new Error();
     const api = {
       makeRequest: jest.fn().mockImplementation(() => {
-        throw error;
+        throw requestError;
       }),
     };
     const dispatch = jest.fn();
